@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Client } from './client'
-import { ClientService } from './client.service'
-import { Router, ActivatedRoute } from '@angular/router'
-import swal from 'sweetalert2'
+import { Client } from './client';
+import { ClientService } from './client.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form',
@@ -37,6 +37,16 @@ private title: string = "Create client"
         swal.fire('New Client', `Client ${response.name} created successfully!`, 'success')
       }
     );
+  }
+
+  update(): void {
+    this.clientService.update(this.client)
+    .subscribe( client =>{
+      this.router.navigate(['/clients'])
+      swal.fire('Client Update', `Client ${client.name} updated successfully!`, 'success')
+    }
+
+    )
   }
 
 }

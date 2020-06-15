@@ -7,7 +7,10 @@
       <button class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/clients/form']">Create Client</button>
     </div>
 
-    <table class="table table-bordered table-striped">
+    <div class="alert alert-info" *ngIf="clients?.length == 0">
+      Database is Empty!!
+    </div>
+    <table class="table table-bordered table-striped" *ngIf="clients?.length > 0">
       <thead>
         <tr>
           <th>id</th>
@@ -16,6 +19,7 @@
           <th>email</th>
           <th>createAt</th>
           <th>edit</th>
+          <th>delete</th>
         </tr>
       </thead>
     <tbody>
@@ -26,7 +30,10 @@
         <td>{{client.email}}</td>
         <td>{{client.createAt}}</td>
         <td>
-          <button type="button" name="button" [routerLink]="['/clients/form', client.id]" class="btn btn-primary">Edit</button>
+          <button type="button" name="edit" [routerLink]="['/clients/form', client.id]" class="btn btn-primary">Edit</button>
+        </td>
+        <td>
+          <button type="button" name="delete" (click)='delete(client)' class="btn btn-danger">Delete</button>
         </td>
       </tr>
     </tbody>
