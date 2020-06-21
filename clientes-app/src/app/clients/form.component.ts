@@ -34,7 +34,7 @@ private title: string = "Create client"
     this.clientService.create(this.client)
     .subscribe(response => {
         this.router.navigate(['/clients'])
-        swal.fire('New Client', `Client ${response.name} created successfully!`, 'success')
+        swal.fire('New Client', `${response.mensaje}: ${response.cliente.name}`, 'success')
       }
     );
   }
